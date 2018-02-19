@@ -1,16 +1,23 @@
 # Docker for Symfony v.2/3 Application 
-# (PHP7.1-FPM - NGINX - MySQL - ELK - KIBANA)
-Docker-symfony gives you everything you need for developing Symfony application. This complete stack run with docker and [docker-compose (1.7 or higher)](https://docs.docker.com/compose/).
+symfonyDocker it's a basic setu up repo that gives you everything you need for developing Symfony application under docker containers. 
+
+## Containers
+* PHP7.1-FPM
+* NGINX
+* MySQL
+* ELK
+* KIBANA
+
 
 ## Install Docker
 First off all you'll need to install docker on your system.
 [Docker Install](https://docs.docker.com/install/#supported-platforms)
 
 
-## Installation (Docker Containers)
+## Installa Docker Containers
 
 1. Create a `.env` from the `.env.dist` file. Adapt it according to your symfony application
-change path to yout symfony local application path
+change path to your symfony local application path
 
     ```bash
     cp .env.dist .env
@@ -83,16 +90,20 @@ Just run `docker-compose up -d`, then:
 
 Have a look at the `docker-compose.yml` file, here are the `docker-compose` built images:
 
-* `db`: This is the MySQL database container,
-* `php`: This is the PHP-FPM container in which the application volume is mounted,
-* `nginx`: This is the Nginx webserver container in which application volume is mounted too,
+* `db`: This is the MySQL database container, remember to reconfigure parameters.yml on your Symfony app.
+* `php`: This is the PHP-FPM 7.1 container in which the application volume is mounted, in this container we can execute composer commands
+* `nginx`: This is the Nginx webserver container
 * `elk`: This is a ELK stack container which uses Logstash to collect logs, send them into Elasticsearch and visualize them with Kibana.
+
 
 This results in the following running containers:
 
 ```bash
 $ docker-compose ps
-           Name                          Command               State              Ports            
+```
+
+```bash
+Name            Command                          State   Ports            
 --------------------------------------------------------------------------------------------------
 db_1            /entrypoint.sh mysqld            Up      0.0.0.0:3306->3306/tcp      
 elk_1           /usr/bin/supervisord -n -c ...   Up      0.0.0.0:81->80/tcp          
