@@ -14,7 +14,7 @@ First off all you'll need to install docker on your system.
 [Docker Install](https://docs.docker.com/install/#supported-platforms)
 
 
-## Installa Docker Containers
+## Install Docker Containers
 
 1. Create a `.env` from the `.env.dist` file. Adapt it according to your symfony application
 change path to your symfony local application path
